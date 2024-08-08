@@ -12,7 +12,7 @@ export function getTemplate({
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Password Protected Site</title>
+      <title>已启用密码保护</title>
       <meta name="description" content="This site is password protected.">
       <link rel="shortcut icon" href="https://picocss.com/favicon.ico">
 
@@ -26,6 +26,7 @@ export function getTemplate({
           min-height: calc(100vh - 7rem);
           padding: 1rem 0;
           max-width: 600px;
+          margin:0 auto;
         }
 
         .error {
@@ -43,14 +44,14 @@ export function getTemplate({
       <main>
         <article>
           <hgroup>
-            <h1>Password</h1>
-            <h2>Please enter your password for this site.</h2>
+            <h1>密码</h1>
+            <h2>已启用密码登陆，请输入密码</h2>
           </hgroup>
-          ${withError ? `<p class="error">Incorrect password, please try again.</p>` : ''}
+          ${withError ? `<p class="error">密码错误，请重试。</p>` : ''}
           <form method="post" action="/cfp_login">
             <input type="hidden" name="redirect" value="${redirectPath}" />
-            <input type="password" name="password" placeholder="Password" aria-label="Password" autocomplete="current-password" required autofocus>
-            <button type="submit" class="contrast">Login</button>
+            <input type="password" name="password" placeholder="Password" aria-label="" autocomplete="current-password" required autofocus>
+            <button type="submit" class="contrast">登陆</button>
           </form>
         </article>
       </main>
