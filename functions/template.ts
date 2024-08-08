@@ -50,7 +50,7 @@ export function getTemplate({
           ${withError ? `<p class="error">密码错误，请重试。</p>` : ''}
           <form method="post" action="/cfp_login">
             <input type="hidden" name="redirect" value="${redirectPath}" />
-            <input type="password" name="password" placeholder="Password" aria-label="" autocomplete="current-password" required autofocus>
+            <input type="password" name="password" placeholder="" aria-label="Password" autocomplete="current-password" required autofocus>
             <button type="submit" class="contrast">登陆</button>
           </form>
         </article>
