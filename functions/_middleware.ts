@@ -16,14 +16,19 @@ export async function onRequest(context: {
   if (
     cookie.includes(cookieKeyValue) ||
     CFP_ALLOWED_PATHS.find(item => pathname.includes(item)) ||
-    (request.method == "POST" && CFP_ALLOWED_PATHS.includes(pathname)) ||
     !env.CFP_PASSWORD
   ) {
-    // Correct hash in cookie, allowed path, or no password set.
-    // Continue to next middleware.
+	if (request.method == "GET" && CFP_ALLOWED_PATHS.includes(pathname)){
+		return new Response(getTemplate({ redirectPath: pathname, withError: error === '1' }), {
+      headers: {
+        'content-type': 'text/html'
+      }
+    });
+	}else{
+	return await next();
+	}	
     return await next();
   } else {
-    // No cookie or incorrect hash in cookie. Redirect to login.
     return new Response(getTemplate({ redirectPath: pathname, withError: error === '1' }), {
       headers: {
         'content-type': 'text/html'
