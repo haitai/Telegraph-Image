@@ -16,6 +16,7 @@ export async function onRequest(context: {
   if (
     cookie.includes(cookieKeyValue) ||
     CFP_ALLOWED_PATHS.find(item => pathname.includes(item)) ||
+    (request.method == "POST" && pathname === '/cfp_login') ||
     !env.CFP_PASSWORD
   ) {
 	if (request.method == "GET" && CFP_ALLOWED_PATHS.includes(pathname)){
